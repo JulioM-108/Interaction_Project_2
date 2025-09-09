@@ -53,3 +53,31 @@ On Windows, run the commands using Git Bash, WSL, or a compatible Bash shell if 
 
 - If you get module import errors, verify you run the command from the project root and that `src` is available as a package (the project uses relative imports from `src`).
 
+## External assets (SharePoint)
+
+We host large media files externally. Please download the background music file and the 1-minute gameplay clip from this SharePoint folder:
+
+https://javerianacaliedu-my.sharepoint.com/:f:/g/personal/misancio_javerianacali_edu_co/Eg6jnJSyqUJPh1a8oZIdG-gBFsQkaL-USleuPHtkeSX8Cg?e=jdj0Zf
+
+Recommended placement after downloading:
+
+- Background music: place the audio file as `Background_Music.wav` in the project sound folder.
+- Short gameplay video: place the video file as `Porject_2_SI_Gameplay.mp4`.
+
+Notes:
+
+- The background WAV may be large; GitHub rejects files larger than 100 MB. If the background audio exceeds that size and you want it in the repository, use Git LFS (recommended). Example commands to enable and track WAV files:
+
+```bash
+git lfs install
+git lfs track "sounds/*.wav"
+git add .gitattributes
+git add sounds/Background_Music.wav
+git commit -m "Add background music via Git LFS"
+git push origin dev
+```
+
+- Alternatively, keep these large files out of Git and leave them on the SharePoint link; the game will still run if the files are placed locally at the paths above.
+
+- If you place the gameplay video under `assets/`, it is only for demonstration and is not required for running the text-based game.
+
