@@ -1,7 +1,7 @@
 # The Lament — Interactive Audio Narrative
 
 Team members:
-- Julio Martínez (JulioM-108)
+- Julio Mazo (JulioM-108)
 - Miguel Sanchez (Milan08S)
 
 If you want different or additional names, replace the line above with the real team members.

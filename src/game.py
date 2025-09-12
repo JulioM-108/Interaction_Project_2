@@ -1,5 +1,7 @@
 from src.Story import Story
 from src.sound import SoundManager
+from src.Resources import get_audio
+
 
 class Game:
     def __init__(self):
@@ -8,10 +10,13 @@ class Game:
         self.running = True
 
     def start(self):
-        print("=== Bienvenido al Sanatorio 'El Lamento' ===")
-        print("Eres Alex, un periodista en busca de la verdad del Proyecto Morfeo...\n")
-
-        self.sound_manager.play_background("Background_Music.wav", loop=True, gain=0.2)
+        bg = get_audio("BACKGROUND_MUSIC")
+        if bg:
+            self.sound_manager.play_background(
+                str(bg["path"]),
+                loop=bg.get("loop", True),
+                gain=bg.get("gain", 0.2)
+            )
 
         while self.running:
             node = self.story.get_current()
@@ -20,7 +25,11 @@ class Game:
             print(node.text)
           
             if node.sound:
-                self.sound_manager.play(node.sound, node.position)
+                meta = get_audio(node.sound)
+                if meta:
+                    self.sound_manager.play(str(meta["path"]), node.position)
+                else:
+                    self.sound_manager.play(node.sound, node.position)
         
             if node.choices:
                 print("\nOpciones:")
